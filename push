@@ -1,0 +1,10 @@
+#!/bin/bash
+# Used push code {data...}
+
+HEADER="Content-Type: application/json"
+URL="https://api.pushbullet.com/v2/pushes"
+
+code=$1
+data=$2
+
+curl -u $code: -X POST $URL --header "$HEADER" --data-binary "$data"
