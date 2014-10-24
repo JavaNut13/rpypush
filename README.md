@@ -1,5 +1,11 @@
 ## RPy Push
 
-A command line utility to send notifications to pushbullet, using the HTTP api and cURL.
+Uses Python, [RPIO](http://pythonhosted.org/RPIO/) and [Pushbullet](http://pushbullet.com) to notify you when inputs happen on your GPIO puns. Hopefully this will eventually become some kind of library/ interface thing and make it easy to use Pushbullet to control electronics with a Raspberry Pi.
 
-Will eventually be used to detect when doors open and alert me. May even be able to receive pushes and perform actions from them (ie `eval()` the content..)
+You need to install RPIO for this to work:
+
+```
+sudo easy_install -U RPIO
+```
+
+`CODE` should be your pushbullet access token, from [here](https://www.pushbullet.com/account).
