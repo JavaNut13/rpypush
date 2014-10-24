@@ -1,13 +1,24 @@
 from rpy_push import *
-import RPi.GPIO as GPIO
+import RPIO
 
 CODE = ""
 
-GPIO.setmode(GPIO.BOARD)
-GPIO.setup(16, GPIO.IN, pull_up_down = GPIO.PUD_DOWN)
+RPIO.setmode(RPIO.BCM)
+RPIO.setup(23, RPIO.IN, pull_up_down=RPIO.PUD_DOWN)
+
+previous = None
 
 while True:
-	if(GPIO.input(23) == 1):
-		push_note(CODE, "GPIO", ":D")
-
-GPIO.cleanup()
+    try:
+        rpio_in = RPIO.input(23)
+        if previous == None:
+            previous = rpio_in
+            continue
+        else:
+            if previous != rpio_in:
+                push_note(CODE, "RPyPush", "Door closed: " + str(rpio_in))
+        previous = rpio_in
+    except KeyboardInterrupt:
+            RPIO.cleanup()
+            print("Finishing")
+            break
