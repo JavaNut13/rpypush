@@ -1,7 +1,9 @@
 import os, json
 
+DIR = os.path.dirname(os.path.abspath(__file__))
+
 def push(code, data):
-    os.system("./push " + code + " \'" + json.dumps(data) + "\'")
+    os.system(DIR + "/push " + code + " \'" + json.dumps(data) + "\'")
 
 def push_note(code, title, body):
     push(code, {"type": "note", "title": title, "body": body})

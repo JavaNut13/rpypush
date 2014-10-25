@@ -1,6 +1,12 @@
 from rpy_push import *
 import RPIO
 
+def door_status(boo):
+    if boo:
+        return "open"
+    else:
+        return "closed"
+
 CODE = ""
 
 RPIO.setmode(RPIO.BCM)
@@ -16,7 +22,7 @@ while True:
             continue
         else:
             if previous != rpio_in:
-                push_note(CODE, "RPyPush", "Door closed: " + str(rpio_in))
+                push_note(CODE, "RPyPush", "Door " + door_status(not rpio_in))
         previous = rpio_in
     except KeyboardInterrupt:
             RPIO.cleanup()
